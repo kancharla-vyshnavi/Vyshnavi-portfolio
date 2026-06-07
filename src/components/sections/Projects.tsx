@@ -33,8 +33,8 @@ export default function Projects() {
       ],
       tech: ['HTML', 'CSS', 'JavaScript', 'LocalStorage'],
       image: '/project-skillverse.png',
-      demoUrl: '#',
-      githubUrl: 'https://github.com',
+      demoUrl: 'https://skill-verse-ai.vercel.app/',
+      githubUrl: 'https://github.com/kancharla-vyshnavi',
     },
     {
       title: 'NovaX-AI (VoiceCare)',
@@ -49,8 +49,8 @@ export default function Projects() {
       ],
       tech: ['Next.js', 'TypeScript', 'OpenAI API', 'Eleven Labs', 'Twilio', 'Tailwind CSS'],
       image: '/project-novax.png',
-      demoUrl: '#',
-      githubUrl: 'https://github.com',
+      demoUrl: 'https://nova-x-ai-fawn.vercel.app/',
+      githubUrl: 'https://github.com/kancharla-vyshnavi/NovaX-AI',
     },
     {
       title: 'Movie Recommendation System',
@@ -65,8 +65,8 @@ export default function Projects() {
       ],
       tech: ['Python', 'Pandas', 'Scikit-Learn', 'NumPy', 'Matplotlib'],
       image: '/project-recommendation.png',
-      demoUrl: '#',
-      githubUrl: 'https://github.com',
+      demoUrl: 'https://movie-recommendation-system-gamma-seven.vercel.app/',
+      githubUrl: 'https://github.com/kancharla-vyshnavi/movie-recommendation-system',
     },
   ];
 
@@ -186,13 +186,17 @@ export default function Projects() {
                         Source
                       </a>
 
-                      <a
-                        href={p.demoUrl}
-                        className="flex-grow flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/20 text-xs font-mono font-semibold text-cyber-cyan hover:text-black hover:bg-cyber-cyan hover:shadow-[0_0_12px_rgba(0,245,255,0.3)] transition-all cursor-pointer"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                        Live Demo
-                      </a>
+                      {p.demoUrl && p.demoUrl !== '#' && (
+                        <a
+                          href={p.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-grow flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/20 text-xs font-mono font-semibold text-cyber-cyan hover:text-black hover:bg-cyber-cyan hover:shadow-[0_0_12px_rgba(0,245,255,0.3)] transition-all cursor-pointer"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          Live Demo
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
