@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f3f4f6;
+  
+  --cyber-cyan: #00F5FF;
+  --cyber-purple: #8B5CF6;
+  --cyber-pink: #EC4899;
+  
+  --cyber-glow: 0 0 15px rgba(0, 245, 255, 0.4);
+  --cyber-glow-purple: 0 0 15px rgba(139, 92, 246, 0.4);
+  --cyber-glow-pink: 0 0 15px rgba(236, 72, 153, 0.4);
+  
+  --glass-bg: rgba(10, 10, 10, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --grid-color: rgba(0, 245, 255, 0.025);
+  
+  --font-geist-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-geist-mono: "JetBrains Mono", monospace;
 }
 
-@theme inline {
+.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  
+  --cyber-cyan: #0284c7;
+  --cyber-purple: #7c3aed;
+  --cyber-pink: #db2777;
+  
+  --cyber-glow: 0 0 10px rgba(2, 132, 199, 0.2);
+  --cyber-glow-purple: 0 0 10px rgba(124, 58, 237, 0.2);
+  --cyber-glow-pink: 0 0 10px rgba(219, 39, 119, 0.2);
+  
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --grid-color: rgba(124, 58, 237, 0.025);
+}
+
+@theme {
+  --color-cyber-cyan: var(--cyber-cyan);
+  --color-cyber-purple: var(--cyber-purple);
+  --color-cyber-pink: var(--cyber-pink);
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  --animate-neon-pulse: neon-pulse 2s infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-matrix-fade: matrix-fade 2s ease-out forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes neon-pulse {
+  from {
+    box-shadow: 0 0 5px var(--cyber-cyan), 0 0 10px rgba(0, 245, 255, 0.2);
+  }
+  to {
+    box-shadow: 0 0 15px var(--cyber-cyan), 0 0 25px rgba(0, 245, 255, 0.4);
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes matrix-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Base resets & utilities */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  font-family: var(--font-geist-sans);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--cyber-cyan), var(--cyber-purple));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--cyber-pink), var(--cyber-purple));
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.light .glass-panel {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
+}
+
+/* Cyber Grid background layout */
+.cyber-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
+
+/* Neon Glow utilities */
+.neon-glow-cyan {
+  text-shadow: 0 0 10px var(--cyber-cyan), 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+.neon-glow-purple {
+  text-shadow: 0 0 10px var(--cyber-purple), 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.neon-glow-pink {
+  text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.neon-shadow-cyan {
+  box-shadow: var(--cyber-glow);
+}
+
+.neon-shadow-purple {
+  box-shadow: var(--cyber-glow-purple);
+}
+
+.neon-shadow-pink {
+  box-shadow: var(--cyber-glow-pink);
+}
+
+/* Typing animation helper */
+.cursor-typing::after {
+  content: '|';
+  animation: cursor-blink 1s infinite step-end;
+}
+
+@keyframes cursor-blink {
+  from, to { color: transparent }
+  50% { color: var(--cyber-cyan) }
 }
