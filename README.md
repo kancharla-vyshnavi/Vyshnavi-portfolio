@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kancharla Lakshmi Vyshnavi - AI & Data Analytics Portfolio
+
+[🚀 Live Demo](PASTE_MY_DEPLOYED_APPLICATION_LINK_HERE)
+
+This is a modern, interactive portfolio application built using Next.js, React, Tailwind CSS, and Framer Motion.
 
 ## Getting Started
 
